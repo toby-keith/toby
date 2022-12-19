@@ -1,0 +1,137 @@
+/*メディアクエリでの条件指定　*/
+@media screen and (min-width: 768px) {
+  body {
+    background-color: red;
+  }
+}
+/*修正後*/
+@media (min-width: 768px) {
+  body {
+    background-color: red;
+  }
+}
+
+メディアクエリでの条件指定（画面サイズ）
+/*PC表示（画面サイズが768px以上の時）*/
+@media (min-width: 768px) {
+  h1 {
+    font-size: 10px;
+  }
+}
+/*768px以上の画面幅に聞かせたい時＝CSSが効く範囲の、最小の値を指定する*/
+@media (min-width: 768px) {
+  h1 {
+    font-size: 10px;
+  }
+}
+/*768px以上の画面幅に聞かせたい時＝CSSが効く範囲の、最大の値を指定する*/
+@media (max-width: 768px) {
+  h1 {
+    font-size: 10px;
+  }
+}
+/*768px〜1199pxの画面幅に聞かせたい時＝CSSが効く範囲の最小値が768px、最大値は1199px指定する*/
+@media (min-width: 768px) and (max-width: 1199px) {
+  h1 {
+    font-size: 10px;
+  }
+}
+
+/*タブレット表示*/
+/*最小値のみ＝768px以上であれば指定が効く*/
+@media (min-width: 768px) {
+  div {
+    background-color: red;
+  }
+}
+/*最小値〜最大値の範囲指定＝768px以上、1199px以下であれば指定が効く
+→1200px以上では効かない*/
+@media (min-width: 768px) and (max-width: 1199px) {
+  div {
+    background-color: red;
+  }
+}
+
+
+PCとタブレットのブレイクポイントを「1200px」、
+タブレットとスマホのブレイクポイントを「768px」としたとき
+/*スマホ表示*/
+div {
+  width: 200px;
+}
+/*タブレット表示*/
+@media (min-width: 768px) {
+  div {
+    width: 400px;
+  }
+}
+/*PC表示*/
+@media (min-width: 1200px) {
+  div {
+    width: 600px;
+  }
+}
+
+PCファーストでの書き方。PCを基準にして新しくスマホ版を作る時
+/*PC表示*/
+div {
+  width: 600px;
+}
+/*タブレット表示*/
+@media (max-width: 1200px) and (min-width: 768px) {
+  div {
+    width: 400px;
+  }
+}
+/*スマホ表示*/
+@media (max-width: 767px) {
+  div {
+    width: 200px;
+  }
+}
+
+レスポンシブこ＝ディングの手法
+①％指定
+img {
+  width: 100%; /*自動で画面サイズを100％まで引き延ばしてくれる*/
+}
+
+②「rem」での文字サイズ指定
+/*スマホ表示*/
+html {
+  font-size: 10px;
+}
+h1 {
+  font-size: 1.2rem;
+}
+/*PC表示*/
+@media (min-width: 768px) {
+  html {
+    font-size: 20px;
+  }
+  /*h1: 20px * 1.2 = 24px */
+}
+
+③画面幅で要素の出し分け
+クラス「sp_only」を用意
+/*PC表示*/
+@media (min-width: 768px) {
+  .sp_only {
+    display: none;
+  }
+}
+
+クラス「sp_only」「pc_only 」を用意
+/*スマホ表示*/‹
+.pc_only {
+  display: none;
+}
+/*PC表示*/
+@media (min-width: 768px) {
+  .pc_only {
+    display: block;
+  }
+  .sp_only {
+    display: none;
+  }
+}

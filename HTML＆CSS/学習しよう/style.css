@@ -1,0 +1,223 @@
+element.style {
+  flex: 1;
+}
+
+.circle {  /*丸の作り方*/
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+
+  /*角を丸める*/
+  border-radius: 50%;
+
+  background: #2d7c9f;
+}
+
+.button::after {
+
+  /*指定し忘れると、矢印が上手く表示されなくなる（擬似要素を使う時）*/
+  content: "";
+  display: inline-block;
+
+  /*値を指定して正方形を作る*/
+  width: 8px;
+  height: 8px;
+
+  /*borderは矢印の線の太さ*/
+  border-top: 2px solid #fff;
+  border-right: 2px solid #fff;
+
+  /*角度調整。この時は、矢印の角度を傾けるために使用*/
+  transform: rotate(45deg);
+
+  /*余白の作成と文字との高さを調整するために使用*/
+  margin-left: 5px;
+  vertical-align: 1px;
+}
+
+.triangle { /*三角形の作り方*/
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 40px 0 40px 60px;
+
+  /*transparentは透明という意味。上→右→下→左の順で値を指定している*/
+  border-color: transparent transparent transparent #ffc639;
+}
+
+/*  [width: 0;][height: 0;]が重要*/
+.border01 {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  border-top: 50px solid #f3970d;
+  border-right: 50px solid #ffc639;
+  border-bottom: 50px solid #2d7c9f;
+  border-left: 50px solid #a9e0f3;
+}
+
+.border02 {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-top: 50px solid #f3970d;
+  border-right: 50px solid #ffc639;
+  border-bottom: 50px solid #2d7c9f;
+  border-left: 50px solid #a9e0f3;
+}
+
+.border03 {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-top: 50px solid #f3970d;
+  border-right: 50px solid transparent;
+  border-bottom: 50px solid #2d7c9f;
+  border-left: 50px solid #a9e0f3;
+}
+
+.bullet-list.organized li {
+  /*1行目の文字の開始位置だけを左側にずらしています。
+  「em」は文字サイズを基準にした単位。「１em」は一文字分の大きさ*/
+  text-indent: -1em;
+  padding-left: 1em;
+}
+
+/*文字の下側にマーカーをつける方法*/
+.marker {
+  background: yellow;
+  background: linear-gradient(transparent 50%, yellow 50%);
+}
+.box01 {
+  background-color: #d0faff;/*背景色*/
+}
+.box02 {
+  background-image: url(images/bg_wedgodweb.jpg);
+  /*url(" ")=ダブルコーテーション*/
+  /*url(' ')=シングルコーテーション*/
+  /*url()*/
+}
+.box03{
+  background-image: url(images/bg_wedgodweb.jpg);
+  background-repeat: no-repeat;/*背景画像の繰り返し*/
+}
+.box04 {
+  background-image: url(images/bg_wedgodweb.jpg);
+  background-repeat: no-repeat;
+  background-position: center bottom;/*背景画像の位置（横方向、縦方向）*/
+  background-position: center;/**/
+  /*
+  [横方向]
+  左寄せ：left
+  中央：center
+  右寄せ：right
+
+  [縦方向]
+  上寄せ：top
+  中央；center
+  下寄せ：bottom
+  */
+}
+.box05 {
+  background-image: url(images/bg_wedgodweb.jpg);
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: contain;/*要素を収める*/
+}
+.box06 {
+  background-image: url(images/bg_wedgodweb.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;/*背景画像サイズ（画像全ての範囲を覆う）*/
+}
+/*「contain」と「cover」の違い
+「contain」：含める
+・余白ができることがある
+・絶対に背景画像がはみ出さない
+「cover」：覆う
+・絶対に余白ができない
+・背景画像がはみ出すことがある
+要素の中に余白ができるか。できないか。
+*/
+.box07 {
+  background: #d0faff url(images/bg_wedgodweb.jpg) no-repeat center top;
+  background: #d0faff url(images/bg_wedgodweb.jpg) no-repeat cover;
+  background: #d0faff url(images/bg_wedgodweb.jpg) no-repeat center top / cover;
+  /*backgroundプロパティの一括指定。順番が入れ替わっても問題ない。一部を除く*/
+  background: #d0faff url(images/bg_wedgodweb.jpg) no-repeat cover center top;/*文法エラー*/
+  background: #d0faff url(images/bg_wedgodweb.jpg) no-repeat cover / center top;/*文法エラー*/
+  background: center top #d0faff url(images/bg_wedgodweb.jpg) no-repeat cover;/*文法エラー*/
+  /*順番が違う、スラッシュがないと文法エラーになる*/
+}
+.box08 {
+  background-repeat: no-repeat;
+  background: #d0faff url(images/bg_wedgodweb.jpg);
+  /*background: #d0faff url(images/bg_wedgodweb.jpg) repeat auto;*/
+}
+
+.box {
+  width: 100%;
+  height: 350px;
+  margin: 10px auto 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid #2f7c9e;
+  box-sizing: border-box;
+  color: #fff;
+  font-size: 36px;
+  font-weight: bold;
+
+}
+
+.point-list li .title::before {
+  display: block;
+  width: 90px;
+  padding: 5px;
+  margin-bottom: 10px;
+  border-radius: 2px;
+  background: #2d7c9f;
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+
+/*基本のプロパティ指定方法*/
+.point-list01 li:nth-child(1) .title::before {
+  content: 'Point01';
+}
+.point-list01 li:nth-child(2) .title::before {
+  content: 'Point02';
+}
+.point-list01 li:nth-child(3) .title::before {
+  content: 'Point03';
+}
+.point-list01 li:nth-child(4) .title::before {
+  content: 'Point04';
+}
+
+/* カウンター実装*/
+.point-list02 {
+  counter-reset: number 0;
+  /*カウンター「number」を定義して０にリセット
+  好きな名前でカウンターをセットして、値を初期化しておく*/
+}
+.point-list02 li {
+  counter-increment: number 1;
+  /*要素毎にカウンター「number」の値を１ずつ増加
+  特定の要素の数がカウントされて、連番が与えられる*/
+}
+.point-list02 li .title::before {
+  content: counter(number);
+  /*カウンター「number」の現在の値を表示
+  与えられた連番を擬似要素として表示する*/
+  content: counter(number, decimal-leading-zero);/*ゼロ埋めの数字２桁「01」*/
+
+  content: '0' counter(number);/*0＋数字１桁「01」*/
+  content: '00' counter(number);/*00＋数字１桁「001」*/
+
+  content: 'Point' counter(number, decimal-leading-zero);/*Point＋ゼロ埋めの数字２桁「Point01」*/
+}
+

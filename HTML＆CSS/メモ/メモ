@@ -1,0 +1,464 @@
+オンクラス　メモ
+
+７）
+ID指定の方がClass指定より優先度が高い
+
+！Displayを使いこなそう！
+＝CSSで要素の表示形式を指定するときに使用します。
+- 要素を好きなように並べたい時に使う。
+- 要素を横に並べたり高さや幅を指定したい時に、プロパティdisplayに適切な値を指定していないと
+- 思い通りの配置にならないことがある。
+＝HTML要素のほとんどは、インライン要素とブロックレベル要素のどちらかに分類されている。
+- インライン要素は、文章の一部として扱われるもの。(例:span、img)
+- ブロックレベル要素は、文書を覆う一つのかたまりとして扱われる。(例:h1、p、div)
+- 関係性は、ブロック要素の中にインライン要素を含む決まりになっている。
+
+
+！使用頻度が高いプロパティ！
+＜display:inline＞
+- 文字列と同じような動き方で配置される、ノートの罫線上に並んでいくようなイメージの要素。
+- 文書の一部として、ノートの罫線からはみ出さないようになるため、高さは指定できない。
+- 横幅は文字数で決まる。横幅の限界まで並べると下の行に折り返す。使用機会は低い。
+＜display:block＞
+- 横幅の大きさは文字数では決まらず、端から端まで横いっぱいに広がった状態になる行そのもののようなイメージの要素。
+- まとまりをつくときに欠かせない。
+- 連続して配置すると縦に並んでいく。縦幅を自由に指定できる。
+- 横幅も指定できるが、できた余白には要素を入れることはできない。Text-align: center;で中央寄せ可能。
+＜display:inline-block＞
+- 横に並べることができる。高さや幅を自由に指定できる。
+- 要素に細かな配置やデザイン調整を行う時に指定します。
+
+表記
+HTML	CSS
+class
+Id
+span
+img
+h1
+p
+div
+display:inline
+display:block
+display:inline-block	.
+#
+text-aline: center;
+
+
+！背景色のある領域にまでリンクの領域にまで広げるための方法！
+- padding、margin＝余白を指定するプロパティ
+
+HTML
+<ul class=“menu”>
+ <li><a href=“”>home</a></li>
+</ul> 
+
+CSS（修正前）
+.menu li {
+  display: inline-block;
+  padding: 20px 30px;
+  text-decoration: none;
+}
+ .menu a {
+  display: block;
+  text-decoration: none; 
+}
+.menu a:hover {
+  opacity: 0.5;
+}
+- この時、余白指定しているのはリストタグの一部であり、aタグではない。
+- リストタグに指定している余白をaタグ指定に変更する必要がある。
+
+CSS（修正後）
+.menu li {
+  display: inline-block;
+  padding: 20px 30px;
+  text-decoration: none;
+}
+ .menu a {
+  display: block;
+  padding: 20px 30px;
+  text-decoration: none; 
+}
+.menu a:hover {
+  opacity: 0.5;
+}
+
+
+！リンクを別タブで開くための方法！
+- いくつかリンクがある場合。外部のURLに飛ぶリンクを貼る場合。
+- Aタグの中に一つ記述を加えてみる。
+
+HTML
+<a href=“URL” target=“_blank”>サイトのリンク</a>
+- 別のタブで開く
+<a href=“URL” target=“_self”>サイトのリンク</a>
+- 同じタブで開く
+＊target=“_blank/_self”はセキュリティ面は弱い。
+
+<a href=“URL” target="_blank" rel="noopener noreferrer">サイトのリンク</a>
+- 問題の対策に好ましい。
+
+表記
+HTML	CSS
+<a href=“URL” target=“_blank”>	padding: px;
+margin:;
+: hover {
+text-decoration:;
+opacity:;
+
+
+！ショートカットキー！
+ショートカットキー
+- 取り消し：cmd＋Z
+- やり直し：cmd＋shift＋Z
+- コピー：cmd＋C
+- ペースト：cmd＋V
+- 切り取り：cmd＋X
+- 全選択：cmd＋A
+- 末尾まで移動：cmd＋矢印
+- 末尾まで一括選択：cmd＋矢印＋shift
+
+エディタ上でのショートカットキー
+- 新規ファイル作成：cmd＋N
+- 新規フォルダ作成：cmd＋shift＋N
+- 保存：cmd＋S
+- 別名保存：cmd＋shift＋S
+- デスクトップ選択：cmd＋D
+- ファイル複製：cmd＋D
+
+Google Chromeで使えるショートカットキー
+- 新規ウィンドウを開く：cmd＋N
+- 新規タブを開く：cmd＋T
+- 開いているタブを移動：cmd＋opt＋矢印
+- タブを閉じる：cmd＋W
+- 閉じたタブを復元：cmd＋shift＋T
+- 更新：cmd＋R
+- 検証ツール起動；cmd＋opt＋I
+- 検索：cmd＋F
+- アプリ切り替え：cmd＋tab
+
+！中央揃えにしたい場合！
+テキストを中央揃えにしたい場合
+p {text-aline: center;}／正解
+
+画像を中央揃えにしたい場合
+p img {text-aline: center;}／不正解
+p {text-aline: center;}／正解
+- text-aline: center;が指定するのは、中央揃えにしたい要素そのものではなく、親要素に指定する必要がある。
+- 要素にtext-aline: center;を指定すると、その中身のインライン要素が中央揃えになる。
+- 指定したものが移動するのではなく、指定した要素の中身が移動するイメージ。
+＊番外編　周りは真ん中にしたいけど、中身は左寄せしたい時。
+CSS
+p {
+  text-aline: center;
+}
+p img {
+  text-aline: left;
+}
+
+ブロックレベル要素の中央寄せの時／displayプロパティの初期値がblockである時
+- margin: 0 auto;＝marginは余白、縦方向０、横方向をautoにするという命令。
+- 真ん中に寄せたい要素の親要素に指定するのではなく、そのものに指定する。
+- Block要素の時は、margine: 0 auto; / display: inline-block;。もしくは、親要素にtext-aline: center;
+＊ text-aline: center;：親要素に指定
+* inline／inline-block＝「text-aline: center;」
+* block＝「margin: ０auto;」
+
+
+！テキストを要素の真ん中にしたい時！
+テキストを縦方向に中央揃えしたい時の方法
+＜line-heightプロパティ＞
+- メニューやボタンのデザインによく使用される方法。
+- テキストの行の高さを指定するプロパティ。値が大きい程、行間が広くなる。テキストを縦長に変形したりするものではない。
+- 注意点、テキストが2行以上の時、使用不可な方法。テキスト1行あたりの高さを要素と同じにしているため。
+heightプロパティとline-heightプロパティに、同じ値、高さを指定。
+縦方向の中央揃えができる理屈としては
+要素自体の高さと文字の高さを全く一緒にすることで、テキストが要素の高さの真ん中に位置してくれる
+
+element.style {
+  line-height: 6em;
+}
+
+＜上下に同じ大きさの余白を指定する方法＞
+- heightプロパティを指定せず、テキストの上下に同じ大きさの余白を指定しても配置は真ん中になる
+- テキストが2行になっても問題ない。
+
+＜複数のインライン要素を中央揃えにしたい時＞
+- displayプロパティの初期値がinlineであること。もしくはinline、inline-blockが設定されてる要素。
+vertical-alineプロパティ
+- 要素の上下方向の揃え位置を指定するプロパティ。
+- 指定した要素そのものが、縦方向に中央揃えになる。
+- 縦中央揃えしたい要素には、全て「vertical-aline: middle;」を設定する必要がある。
+- インライン要素である場合に使用可能。
+- 何も指定しない状態の時、初期値baselineとなっている。
+- Middleという値を設定。
+
+＜要素を画面、または親要素の真ん中に配置したい時＞
+- 汎用性が高い
+- 真ん中寄せにしたい要素がブロックレベル要素である時
+- displayプロパティの初期値がblock。もしくは、blockが指定されている。
+絶対配置
+- positionプロパティで絶対配置によって要素を真ん中の位置に揃えます。
+- 縦方向だけでなく、横方向についても、同時に指定可能。
+- 「position: absolute;」「top: ％;」「transform: translate Y(- ％);」
+- 上記の三つだけでは、画面全体の中央に位置しているような状態
+- 「position: relative;」を指定
+
+element.style {
+  position: relative;
+  top: 50%
+  transform: translateY(-50%);
+}
+
+top50%の指定だけでは、上から50％の位置に来るのは要素の上側になる
+要素の高さの半分の位置が上から50％の位置に来る必要があるため、「transform: translateY(-50%);」の指定によって
+要素の高さの半分だけ位置を上にずらせる。
+横方向も同時に真ん中寄せしたい時は、
+
+element.style {
+  position: relative;
+  top: 50%
+  left: 50%;
+  transform: translateY(-50%, -50%);
+}
+
+＜Flexboxの縦の真ん中寄せ方法は簡単。＞
+- 前提として、基準要素に高さがちゃんと指定されていること
+- 絶対配置とは異なり、真ん中にしたい範囲、空間が定まっていないと機能しない。
+- 親要素に対して、「display: flex;」「align-items: center;」を加える。
+
+element.style {
+  display: flex;
+  align-items: center;
+}
+
+中身がインライン要素、ブロック要素であっても一発で真ん中寄せになる。
+横方向にも真ん中寄せしたい時、「justify-content: center;」を加える。
+
+element.style {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+「position: absolute;」「display: flex;」を指定すると、
+横いっぱいに広がっているブロックレベル要素が、縮まることがあるが、
+ブロックレベル要素にwidthプロパティを指定していないために起こる。
+ブロックレベル要素は特に指定していなくても、自動で画面の横幅、親要素の横幅を引き継いでいるが、
+「position: absolute;」「display: flex;」はそれ打ち消してしまう。
+維持したいときは、ブロックレベル要素に「width: 100％;」等を加えて横幅を指定。
+
+.box {
+  width: 100%;
+  min-height: 100px;
+  height: 200px;
+  background: ;
+  text-aline: center;
+  line-height: 200px;
+}
+
+- [ ] テキストを要素の真ん中にする／heightの値＝line-heightの値
+- [ ] 複数の要素を中央揃えにする／「vertical-aline: middle;」
+- [ ] 上記で対処できない時／絶対値、またはFlexbox
+
+表記
+	CSS
+	text-aline: center;
+text-aline: left;
+margine: 0 auto;
+display: inline-block;
+display: flex;
+line-height: 6em;
+vertical-aline: middle;
+position: absolute;
+position: relative;
+top: ％;
+transform: translate Y(- ％);
+align-items: center;
+justify-content: center;
+
+
+！flexboxはCSS機能！
+* 要素の並び順を変える
+* 要素の折り返し方を決める
+* 要素の配置を決める
+* 要素の幅や高さを自由自在に指定する
+→通常のプロパティでも可能だが、、、Flexboxなら簡単、関節！
+
+親要素に対して、「display: flex;」「display: inline-flex;」
+「display: flex;」→親要素がブロックレベル要素
+「display: inline-flex;」→親要素がインライン要素
+
+flex-direction：親要素の中で、子要素が並ぶ向きを指定します。
+* row (初期値)：左から右に配置
+* column；上から下に配置
+* row-reverse；右から左に配置
+* column-reverse：下から上に配置
+
+flexboxにおける主軸、交差軸とは
+親要素の内部では、縦軸と横軸が大きなレイアウトの基準になっている
+- 主軸とは、要素が横に並んでいく方向の軸を指す。
+- 交差軸とは、主軸の垂直方向に当たる軸になるが、要素が折り返して行が追加されていく方向を指す。
+
+flex-wrap；親要素の中での、子要素の折り返し方を指定する。
+* nowrap (初期値)：折り返さず1行に詰める
+* wrap；子要素が1行に収まらなければ折り返す
+* wrap-reverse；下から上に折り返す
+
+flex-flow：「flex-direction」「flex-wrap」を一括指定する。
+「flex-flow: column wrap;」※この時、flex-directionはcolumn。flex-wrapはwrap。
+
+justify-content：主軸の水平方向における、子要素の揃え方を指定します。
+* flex-start(初期値)：行頭に詰める
+* flex-end：行末に詰める
+* center：中央揃え
+* space-between：最初と最後の子要素を両端に配置し、それ以外の要素は均等に間隔を開けて配置。（特に便利）
+* space-around：全ての子要素を、均等に間隔を開けて配置(全ての子要素の左右に、同じ量の余白がつくイメージ)
+※「flex-start」「flex-end」「center」については、text-alignプロパティと同じような使い方をイメージ。
+
+align-items：主軸の垂直方向における、1行あたりの子要素の揃え方を指定する。
+* stretch (初期値)：一番高さのある子要素に合わせて広げて配置
+* flex-start(初期値)：行頭に詰める
+* flex-end：行末に詰める
+* center：中央揃え
+* space-between：最初と最後の子要素を両端に配置し、それ以外の要素は均等に間隔を開けて配置。
+* space-around：全ての子要素を、均等に間隔を開けて配置(全ての子要素の左右に、同じ量の余白がつくイメージ)
+- もしレイアウト崩れにお困りの時は・・・
+- Align-itemsを初期値「stretch」以外に設定。子要素に横幅、高さを指定。
+
+align-content：主軸の垂直方向のおける、複数行の時の子要素の揃え方を指定する。
+* stretch (初期値)：一番高さのある子要素に合わせて広げて配置
+* baseline：ベースラインで揃える
+* flex-start(初期値)：行頭に詰める
+* flex-end：行末に詰める
+* center：中央揃え
+
+- 親要素よりも高さが指定されており、子要素よりも高さがある場合に効果的。
+「flex-wrap: wrap;」「flex-wrap: wrap-reverse;」子要素が折り返している時にしか効かない。
+- 主軸が入れ替わったらどうなる？
+- 「flex-direction: column;」「flex-direction: column-reverse;」を指定しているときは、主軸が横方向から縦方向とした場合の動作になるため、justify-contentプロパティが縦方向でalign-itemsやalign-contentが横方向に効くことになる。
+- 基本的にFlexboxのどのプロパティの場合についても、主軸が横方向から縦方向に変更になった時には、初期状態から90度回転させたようたイメージをすればいい。
+
+Flexboxを使いたい時
+- 親要素がブロックレベル要素：「display: flex;」
+- 親要素がインライン要素：「display: inline-flex;」
+
+- flex-direction：主軸、交差軸を入れ替える。要素の並ぶ方向が変わる。
+- flex-wrap：要素の折り返しを設定する。
+
+- justify-content：主軸と水平方向の子要素の揃え方
+- align-items：主軸と垂直方向の子要素の揃え方(1行あたりの子要素の並び方）
+- align-content：主軸と垂直方向の子要素の揃え方(複数の行の、親要素の中での配置の仕方)
+
+子要素に指定可能なプロパティ
+align-self：主軸の垂直方向における、1行あたりの子要素の揃え方を個別指定します。
+* stretch (初期値)：一番高さのある子要素に合わせて広げて配置
+* baseline：ベースラインで揃える
+* flex-start(初期値)：行頭に詰める
+* flex-end：行末に詰める
+* center：中央揃え
+
+order：子要素の並び順を指定。数値を指定。
+Orderの値による並び順：負の数→０＝orderを指定していない要素→正の数
+
+flex：親要素の中での、子要素のx比率を指定。
+flexで一括指定するプロパティ
+flex-grow ／flex-shrink／flex-basis
+flexプロパティの記述順：「flex: flex-grow flex-shrink flex-basis;」
+- flex-basis：子要素の幅を指定。初期値が「auto」となっており、要素のwidthプロパティが指定されてたら、その値。指定なければ、コンテンツの大きさをそのまま参照する。子要素の幅を指定する際、widthプロパティ、flex-basisプロパティでは見かけ上は変わらない。優先度で言うと、flex-basisプロパティの方が強いので、この二つに別々の値を指定した場合、flex-basisの値が効く。ただし、flex-basisがwidthを上書きするのは、あくまで主軸が横方向だった場合。flex-basisが幅を指定するのは、横幅ではなく主軸の水平方向における、子要素の幅になる。主軸が横方向から縦方向になっている時は、flex-basisが指定するのも縦方向の幅。heightの値を上書きする形になる。「flex: 1;」といった一括指定をすることがほとんど。
+
+- 「flex: 1;」は厳密には「flex: 1 1 0;」と言う意味。flex-basisの値は０。思い通りの比率で子要素の幅を設定したい時はこの省略形で設定すると覚えるだけで十分。
+
+- flex-grow：子要素の伸び率(余白の配分）を指定。親要素の中の余白を子要素に分配する比率を決めるプロパティ。flexの使い方とほぼ同じ。それぞれの子要素に対し、「flex-grow:１;」「flex-grow:２;」「flex-grow:２;」と言う指定をすると、「１：１：２」の比率で余白が分配される。ただし、「flex:１;」「flex:２;」「flex:２;」の場合と、「flex-grow:１;」「flex-grow:２;」「flex-grow:２;」場合では、結果が少し変化する点に注意。flexを指定したことでflex-basisの値が初期値「auto」から「０」に上書きされる。flex-basisが初期値「auto」の時、自動で子要素の幅を参照する仕組み。「０」になることで、元々の子要素の幅を「０」＝全く考えないことにして、単純に親要素の幅を指定の比率で分配することになる。
+
+- flex-shrink：子要素の縮み(余剰の分配)を指定。flex-growと逆のことをするプロパティ。「flex-shrink: ０;」一つだけ縮まないように設定したりできる。
+
+Flexboxでは、親要素に指定するプロパティと、子要素に指定するプロパティを使いこなすことで、簡単、簡潔にレイアウト調整ができる！
+
+＜親要素＞
+「display: flex;」
+「display: inline-flex;」
+* flex-direction•••並ぶ向き
+* flex-wrap•••折り返し
+* flex-flow（上記２つの」一括指定）
+
+* justify-content•••水平の揃え方
+* align-items•••垂直の揃え方(1行)
+* align-content•••垂直の揃え方(複数行)
+
+＜子要素＞
+* align-self•••個別に揃え方指定
+* order•••並び順指定
+* flex (下記３つの一括指定)•••幅に比率
+　・flex-grow
+　・flex-shrink
+　・flex-basis
+
+ positionプロパティ：要素の配置を決めるためのCSS。これ無しではレイアウトは組めない基本的なもの。
+static (初期値）
+Relative：相対位置。今ある場所から相対的に位置指定ができる状態。上下左右に配置をずらすことが可能。数値の指定には別のプロパティを組み合わせて使う。
+Top•••上方向
+bottom•••下方向
+left•••左方向
+right•••右方向
+親要素の幅や高さを基準して、％指定も可能。pxはもちろん。
+
+Absolute：絶対位置。親要素を基準とした絶対的な配置ができる。具体的な位置はrelative時と同じように４つのプロパティを使用して数値指定する。要素が画面上にふわっと浮き上がったようなイメージになる。absoluteを指定した要素は、それ自体の高さや幅が認識されなくなる。画面上に重なるように配置される。親要素はbodyタグのページ全体に当たる。
+Bodyタグの表示領域全体、もしくは「position: relative;」が指定してある親要素が位置指定の基準になる
+※「position: absolute;」だけ指定しても、top、left、などの位置指定プロパティを同時に指定しないと位置は動かず初期位置のままなため注意
+特定の親要素を基準にしたい場合は、「position: relative;」を指定することで、思い通りの配置を再現可能。
+
+Fixed：ブラウザの表示領域が位置指定の基準。※親要素に「position: relative;」指定も必要なし
+
+sticky
+
+「position: static;」特にpositionを指定していない場合には、要素の配置が、通常の流れに従って、上から下、左から右という感じで並ぶため、個別に位置を調整することはできない。特定の要素の中で位置を決めたり、画面上で配置を決めたりしたい時は、 positionに初期値以外の別の値を指定する必要がある。
+
+要素の重なり順をコントロール
+Z-indexプロパティ；要素を自由に重なりあえるようにする。10、100の単位で重なりを指定することをお勧め。
+重なり順を後ろに下げたい要素に、マイナスの値を指定することも可能。初期値の状態ではz-indexは無効になる。
+要素の重なり順を指定。(例；「z-index: 10;」)。※必ず、 positionに初期値static以外を指定した状態で一緒に指定する。
+
+Positionプロパティの使い所
+要素間の距離などを調整するときは、padding、marginを使用し余白を指定するのが一般的。
+見た目調整のために、 positionの乱用は禁止！
+余白で設定すべきところを見極めよう。
+※positionは、細かい調整、パーツ調整に向く。
+
+Flexbox、floatなど要素の配置レイアウトを調整する方法は他にもあるが、それぞれの特性によって向き不向きがる。使い分けに迷った時は、簡潔な記述ですむかどうか、他の要素への影響が少ないかどうかを考える。
+
+Positionプロパティ：要素の配置を指定。初期値は「static」※関連プロパティ指定不可
+
+設定可能値
+- 「relative」初期位置から相対的に位置指定。
+- 「absolute」基準となる親要素に対して、絶対的に位置指定。
+　　「position: relative;」が指定されている親要素が基準。なければbodyタグ要素。
+- 「fixed」ブラウザ表示領域を基準に、絶対的に位置指定。
+
+関連プロパティ
+- 「top」「bottom」「left」「right」基準位置からの距離を上下左右に数値指定。
+- 「z-index」要素の重なり順を整数で指定。※特に指定しない場合、記述順に従って上に重なっていく。
+
+
+
+
+「display: block;」の要素がならぶとき、どちらかのmarginプロパティの値のうちの、大きい方の値が採用されて余白が空く。※「display：inline；」「display：inline -block；」では起こらない
+Widthプロパティ、heightプロパティで決められるのは「ボーダーボックス」までの領域である。
+
+Box-sizing: content-box;（初期値）
+Calc関数などで計算式を入れなくても、paddingやborderを含めた大きさでwidthの値を決められて便利。
+※意味ないところにも使いまくるのはNG
+
+※W3C CSS サービスで文法チェック
+
+
+　 border-radius: 50%; ←角を丸める
+
+矢印を作る時
+ content: "";
+  display: inline-block;
+を指定し忘れないように
+
+
+
+<! -- ここにコメント --> 
